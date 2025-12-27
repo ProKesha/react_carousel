@@ -27,7 +27,7 @@ const Carousel: React.FC<Props> = ({
       const next = prev + step;
 
       if (next > maxPosition) {
-        return infinite ? 0 : prev;
+        return infinite ? 0 : maxPosition;
       }
 
       return next;
@@ -39,7 +39,7 @@ const Carousel: React.FC<Props> = ({
       const next = prev - step;
 
       if (next < 0) {
-        return infinite ? maxPosition : prev;
+        return infinite ? maxPosition : 0;
       }
 
       return next;
@@ -69,11 +69,11 @@ const Carousel: React.FC<Props> = ({
         >
           {images.map((img, index) => (
             <li
-              key={img}
+              key={`${img}-${index}`}
               className="Carousel__item"
               style={{ width: itemWidth }}
             >
-              <img src={img} alt={`${index + 1}`} width={itemWidth} />
+              <img src={img} alt={`Slide ${index + 1}`} width={itemWidth} />
             </li>
           ))}
         </ul>
